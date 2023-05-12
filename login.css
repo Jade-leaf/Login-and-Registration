@@ -1,0 +1,595 @@
+* {
+  box-sizing: border-box;
+  /* 可以使弹窗的内容和图片无法被选中和复制 */
+  /* 设置页面不可选择，复制 */
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-image: url(./1.png);
+}
+/* 登录注册的父类 */
+.loginAndRegister {
+  width: 70%;
+  height: 80%;
+  background-color: rgba(30, 19, 29, 0.7);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  /* X轴 Y轴 模糊距离 阴影大小 颜色 内侧阴影 */
+  box-shadow: 0px 0px 15px 0px black inset;
+  /* padding: 7px; */
+  border: none;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+/*登录页面的父类 */
+.loginAndRegister .log-on {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 登录模块的内层类 */
+.loginAndRegister .log-inner {
+  width: 80%;
+  height: 80%;
+}
+/* 登录内层模块中的标题 */
+.loginAndRegister .log-inner h1 {
+  margin-bottom: 50px;
+  color: white;
+  letter-spacing: 5px;
+}
+/* 登录内层模块中的input标签及样式的父类 */
+.loginAndRegister .log-inner .text-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+/* 登录内层模块中的input标签样式 */
+.loginAndRegister .log-inner .text-box .log-input {
+  width: 300px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 25px 0;
+  font-size: 16px;
+  padding-left: 10px;
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+/* 登录内层模块中的 用户名 */
+.loginAndRegister .log-inner .text-box .span-user {
+  position: absolute;
+  left: 4px;
+  top: 25px;
+  transition: all 0.5s;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/* 登录内层模块中的 input标签标配的下划线 */
+.loginAndRegister .log-inner .text-box .line-inner {
+  width: 300px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  border-radius: 5px;
+  position: absolute;
+  left: 0px;
+  top: 53px;
+  z-index: 1;
+  transition: all 0.5s;
+}
+/* 登录内层模块中的 input点击实现的下划线样式 */
+.loginAndRegister .log-inner .text-box .line {
+  width: 0px;
+  height: 2px;
+  background-color: rgb(244, 62, 6, 0.7);
+  overflow: hidden;
+  border-radius: 5px;
+  position: absolute;
+  left: 0px;
+  top: 53px;
+  z-index: 2;
+  transition: all 0.3s;
+}
+/* 登录内层模块中的 密码 */
+.loginAndRegister .log-inner .text-box .span-password {
+  position: absolute;
+  left: 5px;
+  top: 95px;
+  transition: all 0.5s;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/* 登录内层模块中的 属于密码的input标签标配的下划线 */
+.loginAndRegister .log-inner .text-box .line-inner-assistant,
+.loginAndRegister .log-inner .text-box .line-assistant {
+  top: 124px;
+}
+/* 登录内层模块中的 用户名跟密码样式，点击的时候会进行下列样式 js控制*/
+.loginAndRegister .log-inner .text-box .text-movement {
+  margin-top: -25px;
+  margin-left: -11px;
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+}
+/* 登录内层模块中的密码栏的小眼睛样式 */
+.loginAndRegister .log-inner .text-box .iconfont {
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s;
+}
+/* 登录内层模块中的密码栏的其中一个小眼睛样式进行块级隐藏 */
+.loginAndRegister .log-inner .text-box .iconfont,
+.loginAndRegister .register-inner .text-box .iconfont {
+  display: none;
+}
+/* 登录内层模块中的 忘记密码模块 */
+.loginAndRegister .log-inner .links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 20%;
+}
+/* 登录内层模块中的 忘记密码的样式 */
+.loginAndRegister .log-inner .links .forget {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+  letter-spacing: 1.5px;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+/* 登录内层模块中的 密码模块 鼠标移动到这个模块时，所实现的样式 */
+.loginAndRegister .log-inner .links .forget:hover {
+  color: red;
+}
+/* 登录内层模块中的 登录按钮 */
+.loginAndRegister .log-inner .submit {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  color: white;
+}
+/* 登录内层模块中的 登录按钮两个伪元素类的样式 */
+.loginAndRegister .log-inner .submit::before,
+.loginAndRegister .log-inner .submit::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  /* 这里加一个动画过渡
+    最后的0.3秒时延迟时间 */
+  transition: all 0.3s ease-in-out;
+}
+/* 登录内层模块中的 登录按钮两个伪元素类中的其中一个的样式 */
+.loginAndRegister .log-inner .submit::before {
+  top: 0;
+  left: 0;
+  /* 删除左边元素的右边框和下边框 */
+  border-right: 0;
+  border-bottom: 0;
+}
+/* 登录内层模块中的 登录按钮两个伪元素类中的另一个的样式 */
+.loginAndRegister .log-inner .submit::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+/* 登录内层模块中的 鼠标移动到登录按钮时，两个伪元素会进行样式更改 */
+.loginAndRegister .log-inner .submit:hover::before,
+.loginAndRegister .log-inner .submit:hover::after {
+  width: 98px;
+  height: 38px;
+}
+/* 登录内层模块中的 鼠标移动到登录按钮时，登录按钮会进行样式更改 */
+.loginAndRegister .log-inner .submit:hover {
+  box-shadow: 0px 0px 10px 0 white;
+  transition-delay: 0.2s;
+  background-color: white;
+  color: #525288;
+}
+
+/* 挡板页面的父类 */
+.baffle {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(82, 82, 136, 0.6);
+  color: white;
+  box-shadow: inset 0px 15px 15px -15px rgba(0, 0, 0, 0.7),
+    inset -15px 0px 15px -15px rgba(0, 0, 0, 0.7),
+    inset 0px -15px 15px -15px rgba(0, 0, 0, 0.7);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  transition: all 0.5s linear;
+}
+/* 挡板页面的内层类 */
+.baffle .baffle-inner {
+  width: 80%;
+  height: 80%;
+}
+/* 挡板页面的内层类2 */
+.baffle .baffle-inner-two {
+  transform: scale(0);
+  opacity: 0;
+  display: none;
+}
+/* 挡板页面内层类中的 标题 */
+.baffle .baffle-inner h1 {
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+/* 挡板页面内层类中的 副标题 */
+.baffle .baffle-inner h4 {
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+}
+/* 挡板页面内层类中的 文本内容 */
+.baffle .baffle-inner p {
+  text-indent: 2em;
+  line-height: 2em;
+  margin-bottom: 60px;
+  letter-spacing: 3px;
+}
+/* 挡板页面内层类中的 注册跳转按钮 */
+.baffle .baffle-inner .befor-submit {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  color: white;
+}
+/* 挡板页面内层类中的 注册跳转按钮的两个伪元素样式 */
+.baffle .baffle-inner .befor-submit::before,
+.baffle .baffle-inner .befor-submit::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  /* 这里加一个动画过渡
+    最后的0.3秒时延迟时间 */
+  transition: all 0.3s ease-in-out;
+}
+.baffle .baffle-inner .befor-submit::before {
+  top: 0;
+  left: 0;
+  /* 删除左边元素的右边框和下边框 */
+  border-right: 0;
+  border-bottom: 0;
+}
+.baffle .baffle-inner .befor-submit::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+.baffle .baffle-inner .befor-submit:hover::before,
+.baffle .baffle-inner .befor-submit:hover::after {
+  width: 98px;
+  height: 38px;
+}
+.baffle .baffle-inner .befor-submit:hover {
+  box-shadow: 0px 0px 10px 0 white;
+  transition-delay: 0.2s;
+  background-color: white;
+  color: #525288;
+}
+
+/* 注册页面模块 */
+/* 注册页面的父类 */
+.loginAndRegister .register {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 注册模块的内层类 */
+.loginAndRegister .register-inner {
+  width: 80%;
+  height: 80%;
+  display: none;
+  opacity: 0;
+  transform: scale(0);
+}
+/* 注册内层模块中的标题 */
+.loginAndRegister .register-inner h1 {
+  margin-bottom: 40px;
+  color: white;
+  letter-spacing: 5px;
+}
+/* 注册内层模块中的input标签及样式的父类 */
+.loginAndRegister .register-inner .text-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  margin-bottom: 50px;
+}
+/* 注册内层模块中的input标签样式 */
+.loginAndRegister .register-inner .text-box .res-input {
+  width: 300px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 25px 0;
+  font-size: 16px;
+  padding-left: 10px;
+  position: relative;
+  z-index: 1;
+  color: white;
+  letter-spacing: 2px;
+}
+/* 注册内层模块中的 用户名 */
+.loginAndRegister .register-inner .text-box .span-user {
+  position: absolute;
+  left: 4px;
+  top: 25px;
+  transition: all 0.5s;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/* 注册内层模块中的 input标签标配的下划线 */
+.loginAndRegister .register-inner .text-box .line-inner {
+  width: 300px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  border-radius: 5px;
+  position: absolute;
+  left: 0px;
+  top: 53px;
+  z-index: 1;
+  transition: all 0.5s;
+}
+/* 注册内层模块中的 input点击实现的下划线样式 */
+.loginAndRegister .register-inner .text-box .line {
+  width: 0px;
+  height: 2px;
+  background-color: rgb(244, 62, 6, 0.7);
+  overflow: hidden;
+  border-radius: 5px;
+  position: absolute;
+  left: 0px;
+  top: 53px;
+  z-index: 2;
+  transition: all 0.3s;
+}
+/* 注册内层模块中的 密码 */
+.loginAndRegister .register-inner .text-box .span-password {
+  position: absolute;
+  left: 5px;
+  top: 95px;
+  transition: all 0.5s;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/* 注册内层模块中的 确认密码 */
+.loginAndRegister .register-inner .text-box .span-password-confirm {
+  position: absolute;
+  left: 5px;
+  top: 165px;
+  transition: all 0.5s;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+/* 确认密码的小眼睛 */
+#icon-conf {
+  bottom: 22px;
+}
+/* 注册内层模块中的 属于密码的input标签标配的下划线 */
+.loginAndRegister .register-inner .text-box .line-inner-assistant,
+.loginAndRegister .register-inner .text-box .line-assistant {
+  top: 124px;
+}
+/* 注册内层模块中的 属于确认密码的input标签标配的下划线 */
+.loginAndRegister .register-inner .text-box .line-inner-confirm,
+.loginAndRegister .register-inner .text-box .line-confirm {
+  top: 194px;
+}
+/* 注册内层模块中的 用户名跟密码样式，点击的时候会进行下列样式 js控制*/
+.loginAndRegister .register-inner .text-box .text-movement {
+  margin-top: -25px;
+  margin-left: -11px;
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+}
+.loginAndRegister .register-inner .text-box .text-movement-erro {
+  margin-top: -25px;
+  margin-left: -15px;
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+}
+/* 注册内层模块中的密码栏的小眼睛样式 */
+.loginAndRegister .register-inner .text-box .iconfont {
+  position: absolute;
+  bottom: 94px;
+  right: 5px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s;
+}
+/* 注册内层模块中的 密码模块 鼠标移动到这个模块时，所实现的样式 */
+.loginAndRegister .register-inner .links .forget:hover {
+  color: red;
+}
+/* 注册内层模块中的 注册按钮 */
+.loginAndRegister .register-inner .submit {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  color: white;
+}
+/* 注册内层模块中的 注册按钮两个伪元素类的样式 */
+.loginAndRegister .register-inner .submit::before,
+.loginAndRegister .register-inner .submit::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  /* 这里加一个动画过渡
+    最后的0.3秒时延迟时间 */
+  transition: all 0.3s ease-in-out;
+}
+/* 注册内层模块中的 注册按钮两个伪元素类中的其中一个的样式 */
+.loginAndRegister .register-inner .submit::before {
+  top: 0;
+  left: 0;
+  /* 删除左边元素的右边框和下边框 */
+  border-right: 0;
+  border-bottom: 0;
+}
+/* 注册内层模块中的 注册按钮两个伪元素类中的另一个的样式 */
+.loginAndRegister .register-inner .submit::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+/* 注册内层模块中的 鼠标移动到注册按钮时，两个伪元素会进行样式更改 */
+.loginAndRegister .register-inner .submit:hover::before,
+.loginAndRegister .register-inner .submit:hover::after {
+  width: 98px;
+  height: 38px;
+}
+/* 注册内层模块中的 鼠标移动到注册按钮时，注册按钮会进行样式更改 */
+.loginAndRegister .register-inner .submit:hover {
+  box-shadow: 0px 0px 10px 0 white;
+  transition-delay: 0.2s;
+  background-color: white;
+  color: #525288;
+}
+
+/* 登录注册页面往返 */
+/* 去到注册页面样式 */
+.loginAndRegister .log-on .bounce {
+  animation: bounce-lool 0.3s forwards linear;
+}
+.loginAndRegister .baffle .bounce {
+  transform: scale(0);
+  opacity: 0;
+  animation: bounce-opposite 0.3s forwards linear;
+}
+@keyframes bounce-lool {
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+.loginAndRegister .baffle .baffle-bounce {
+  transition: all 0.3s linear;
+  transform: scale(1);
+  opacity: 1;
+}
+.loginAndRegister .baffle .baffle-large-inner,
+.loginAndRegister .register .register-large-inner,
+.loginAndRegister .log-on .log-large-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.baffle-move {
+  animation: baffle-move 0.3s linear forwards;
+  box-shadow: inset 0px 15px 15px -15px rgba(0, 0, 0, 0.7),
+    inset 15px 0px 15px -15px rgba(0, 0, 0, 0.7),
+    inset 0px -15px 15px -15px rgba(0, 0,0, 0.7);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+@keyframes baffle-move {
+  to {
+    transform: translateX(-100%);
+  }
+}
+/* 去到登录页面样式 */
+.loginAndRegister .log-on .bounce-return {
+  transform: scale(0);
+  opacity: 0;
+  animation: bounce-opposite 0.3s forwards linear;
+}
+.loginAndRegister .log-on .bounce-opposite,
+.loginAndRegister .register .bounce-opposite,
+.loginAndRegister .baffle .bounce-opposite {
+  transform: scale(0);
+  opacity: 0;
+  animation: bounce-opposite 0.3s forwards linear;
+}
+.loginAndRegister .register .bounce-befo,
+.bounce-kile {
+  transform: scale(0);
+  opacity: 0;
+  animation: bounce-opposite 0.4s forwards linear;
+}
+@keyframes bounce-opposite {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
